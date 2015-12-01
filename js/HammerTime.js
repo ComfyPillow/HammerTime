@@ -9,7 +9,7 @@
 		var mySvg = d3.select('#shape')
 
 		// listen to events...
-		mc.on("panleft panright tap press", function(ev) {
+		mc.on("panleft panright tap rotate press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
 		    mc.get('rotate').set({enable:true});
 		});
@@ -26,6 +26,14 @@
 			    .attr('height', 100)
 			    .attr('fill', '#add8e6')
 		});
+
+		mc.on("rotate press", function(ev){
+			mySvg.selectAll('rect')
+				.transition()
+    			.duration(2000)
+    			.attr('rx', 0)
+			    .attr('ry', 0)
+		}); 
 
 		//Slides Left
 		mc.on("panleft press", function(ev) {
@@ -52,12 +60,5 @@
 			    .attr('y', $(window).height()/3)
 		}); 
  
- 		mc.on("rotate press", function(ev){
-			mySvg.selectAll('rect')
-				.transition()
-    			.duration(2000)
-    			.attr('rx', 0)
-			    .attr('ry', 0)
-		}); 
 	}
 }());
