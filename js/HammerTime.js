@@ -9,9 +9,12 @@
 		var mySvg = d3.select('#shape')
 
 		// listen to events...
-		mc.on("panleft panright tap rotate press", function(ev) {
+		mc.on("panleft panright panup pandown tap rotate press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
+		    // Enables Rotate
 		    mc.get('rotate').set({enable:true});
+		    // Allows for Up and Down Swipes
+		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 		});
 
 		//Creates initial Circle - see if you can get it to add one each tap?
@@ -27,6 +30,7 @@
 			    .attr('fill', '#add8e6')
 		});
 
+		//Rotate fills and changes to a rectangle
 		mc.on("rotate press", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
@@ -41,7 +45,7 @@
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
-  				.attr('x', $(window).width()/4);
+  				.attr('x', $(window).width()/5);
 		});
 
 		//Slides Right
@@ -49,7 +53,23 @@
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
-  				.attr('x', ($(window).width()/4 * 3));
+  				.attr('x', ($(window).width()/5 * 4));
+		});
+
+		//Slides Up
+		mc.on("panup press", function(ev) {
+		    mySvg.selectAll('rect')
+    			.transition()
+    			.duration(2000)
+  				.attr('y', $(window).height()/30);
+		});
+
+		//Slides Left
+		mc.on("pandown press", function(ev) {
+		    mySvg.selectAll('rect')
+    			.transition()
+    			.duration(2000)
+  				.attr('y', $(window).height()/2);
 		});
 
 		//Slides back to center
