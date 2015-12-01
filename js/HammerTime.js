@@ -8,14 +8,18 @@
 		var mc = new Hammer(myElement);
 		var mySvg = d3.select('#shapearea')
 
+		var addHammerListener = function(that) {
+			var objMC = new Hammer(that)
+			// Enables Rotate
+		    objMC.get('rotate').set({enable:true});
+		    // Allows for Up and Down Swipes
+		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+		    objMC.get('rotate').set({threshold: 10});
+		}
+
 		// listen to events...
 		mc.on("panleft panright panup pandown tap rotate press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
-		    // Enables Rotate
-		    mc.get('rotate').set({enable:true});
-		    // Allows for Up and Down Swipes
-		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('rotate').set({threshold: 10});
 		});
 
 		//Creates initial Circle 
