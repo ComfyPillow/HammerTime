@@ -2,6 +2,7 @@
 	window.onload = function() {
 		var myElement = document.getElementById('myElement');
 		$('#shape').css({'height':($(window).height()/3 * 2) + 'px','width':$(window).width() + 'px' });
+		$('#myElement').css({'height': $(window).height()/3});
 		// create a simple instance
 		// by default, it only adds horizontal recognizers
 		var mc = new Hammer(myElement);
@@ -15,9 +16,7 @@
 		//Creates initial Circle - see if you can get it to add one each tap?
 		mc.on("tap", function(ev){
 
-			mySvg.selectAll('circle')
-				.data([1])
-			    .enter().append('circle')
+			mySvg.append('circle')
 			    .attr('r', 50)
 			    .attr('cx', $(window).width()/2)
 			    .attr('cy', $(window).height()/3)
