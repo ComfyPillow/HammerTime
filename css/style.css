@@ -4,3 +4,8 @@
 	text-align: center;
 	font: 30px/300px Helvetica, Arial, sans-serif;
 }
+
+#shape {
+	height: 1000px;
+	width: 1000px;
+}
