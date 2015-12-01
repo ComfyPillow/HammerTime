@@ -16,6 +16,7 @@
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 		    mc.get('rotate').set({threshold: 10});
+		    mc.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
 		});
 
 		//Creates initial Circle 
@@ -28,7 +29,83 @@
 			    .attr('width', 100)
 			    .attr('height', 100)
 			    .attr('fill', '#add8e6')
+			    .each(function(){
+			    	addHammerListener(this);
+			    })
+		});
+
+		var addHammerListener = function(that) {
+			var objMC = new Hammer(that)
+			// Enables Rotate
+		    objMC.get('rotate').set({enable:true});
+		    // Allows for Up and Down Swipes
+		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+		    objMC.get('rotate').set({threshold: 10});
+
+		    //Tap Stop
+		    objMC.on("tap", function(ev){
+		    	d3.select(that)
+		    		.transition()
+		    		.duration(0);
+		    });
+
+
+			//Rotate fills and changes to a rectangle
+			objMC.on("rotate press", function(ev){
+				d3.select(that)
+					.transition()
+	    			.duration(2000)
+	    			.attr('rx', 0)
+				    .attr('ry', 0)
+				    .attr('fill', '#B23AEE')
+			}); 
+
+			//Slides Left
+			objMC.on("panleft", function(ev) {
+			    d3.select(that)
+	    			.transition()
+	    			.duration(2000)
+	  				.attr('x', 50);
 			});
+
+			//Slides Right
+			objMC.on("panright", function(ev) {
+			    d3.select(that)
+	    			.transition()
+	    			.duration(2000)
+	  				.attr('x', $(window).width() - 150);
+			});
+
+			//Slides Up
+			objMC.on("panup", function(ev) {
+			    d3.select(that)
+	    			.transition()
+	    			.duration(2000)
+	  				.attr('y', $(window).height()/30);
+			});
+
+			//Slides Left
+			objMC.on("pandown", function(ev) {
+			    d3.select(that)
+	    			.transition()
+	    			.duration(2000)
+	  				.attr('y', $(window).height()/2);
+			});
+
+			//Slides back to center
+			objMC.on("press", function(ev){
+				d3.select(that)
+					.transition()
+	    			.duration(2000)
+	    			.attr('rx', 100)
+				    .attr('ry', 100)
+				    .attr('fill', '#add8e6')
+	    			.attr('x', $(window).width()/2 - 50)
+				    .attr('y', $(window).height()/3 - 50)
+			});
+		}
+
+		// ** For Selecting ALL shapes **
 
 		//Rotate fills and changes to a rectangle
 		mc.on("rotate press", function(ev){
@@ -83,6 +160,14 @@
     			.attr('x', $(window).width()/2 - 50)
 			    .attr('y', $(window).height()/3 - 50)
 		}); 
+
+		mc.on("quadrupletap", function(ev){
+			mySvg.selectAll('rect')
+				.transition()
+				.duration(2000)
+				.attr('x', Math.random() * $(window).width())
+				.attr('y', Math.random() * $(window).height())
+		})
  
 	}
 }());
