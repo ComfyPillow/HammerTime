@@ -18,7 +18,7 @@
 		    mc.get('rotate').set({threshold: 10});
 		});
 
-		//Creates initial Circle - see if you can get it to add one each tap?
+		//Creates initial Circle 
 		mc.on("tap", function(ev){
 			mySvg.append('rect')
 			    .attr('rx', 100)
@@ -28,7 +28,7 @@
 			    .attr('width', 100)
 			    .attr('height', 100)
 			    .attr('fill', '#add8e6')
-		});
+			});
 
 		//Rotate fills and changes to a rectangle
 		mc.on("rotate press", function(ev){
@@ -41,7 +41,7 @@
 		}); 
 
 		//Slides Left
-		mc.on("panleft press", function(ev) {
+		mc.on("panleft", function(ev) {
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
@@ -49,7 +49,7 @@
 		});
 
 		//Slides Right
-		mc.on("panright press", function(ev) {
+		mc.on("panright", function(ev) {
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
@@ -57,7 +57,7 @@
 		});
 
 		//Slides Up
-		mc.on("panup press", function(ev) {
+		mc.on("panup", function(ev) {
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
@@ -65,7 +65,7 @@
 		});
 
 		//Slides Left
-		mc.on("pandown press", function(ev) {
+		mc.on("pandown", function(ev) {
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
