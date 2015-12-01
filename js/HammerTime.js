@@ -33,6 +33,7 @@
     			.duration(2000)
     			.attr('rx', 0)
 			    .attr('ry', 0)
+			    .attr('fill', '#B23AEE')
 		}); 
 
 		//Slides Left
@@ -58,7 +59,6 @@
     			.duration(1000)
     			.attr('x', $(window).width()/2)
 			    .attr('y', $(window).height()/3)
-			    .attr('fill', '#B23AEE')
 		}); 
  
 	}
