@@ -1,12 +1,12 @@
 (function(){
 	window.onload = function() {
 		var myElement = document.getElementById('myElement');
-		$('#shape').css({'height':($(window).height()/3 * 2) + 'px','width':$(window).width() + 'px' });
+		$('#shapearea').css({'height':($(window).height()/3 * 2) + 'px','width':$(window).width() + 'px' });
 		$('#myElement').css({'height': $(window).height()/3});
 		// create a simple instance
 		// by default, it only adds horizontal recognizers
 		var mc = new Hammer(myElement);
-		var mySvg = d3.select('#shape')
+		var mySvg = d3.select('#shapearea')
 
 		// listen to events...
 		mc.on("panleft panright panup pandown tap rotate press", function(ev) {
@@ -15,6 +15,7 @@
 		    mc.get('rotate').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+		    mc.get('rotate').set({threshold: 10});
 		});
 
 		//Creates initial Circle - see if you can get it to add one each tap?
