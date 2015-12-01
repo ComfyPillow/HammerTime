@@ -55,9 +55,10 @@
 		mc.on("press", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
-    			.duration(2000)
+    			.duration(1000)
     			.attr('x', $(window).width()/2)
 			    .attr('y', $(window).height()/3)
+			    .attr('fill', '#B23AEE')
 		}); 
  
 	}
