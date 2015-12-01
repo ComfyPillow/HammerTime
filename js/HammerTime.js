@@ -20,7 +20,6 @@
 
 		//Creates initial Circle - see if you can get it to add one each tap?
 		mc.on("tap", function(ev){
-
 			mySvg.append('rect')
 			    .attr('rx', 100)
 			    .attr('ry', 100)
@@ -46,7 +45,7 @@
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
-  				.attr('x', $(window).width()/5);
+  				.attr('x', 50);
 		});
 
 		//Slides Right
@@ -54,7 +53,7 @@
 		    mySvg.selectAll('rect')
     			.transition()
     			.duration(2000)
-  				.attr('x', ($(window).width()/5 * 4));
+  				.attr('x', $(window).width() - 150);
 		});
 
 		//Slides Up
