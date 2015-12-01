@@ -56,7 +56,7 @@
 		mc.on("press", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
-    			.duration(1000)
+    			.duration(2000)
     			.attr('rx', 100)
 			    .attr('ry', 100)
 			    .attr('fill', '#add8e6')
