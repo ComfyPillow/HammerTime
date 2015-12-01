@@ -20,8 +20,8 @@
 			mySvg.append('rect')
 			    .attr('rx', 100)
 			    .attr('ry', 100)
-			    .attr('x', $(window).width()/2)
-			    .attr('y', $(window).height()/3)
+			    .attr('x', $(window).width()/2 - 50)
+			    .attr('y', $(window).height()/3 - 50)
 			    .attr('width', 100)
 			    .attr('height', 100)
 			    .attr('fill', '#add8e6')
@@ -57,8 +57,11 @@
 			mySvg.selectAll('rect')
 				.transition()
     			.duration(1000)
-    			.attr('x', $(window).width()/2)
-			    .attr('y', $(window).height()/3)
+    			.attr('rx', 100)
+			    .attr('ry', 100)
+			    .attr('fill', '#add8e6')
+    			.attr('x', $(window).width()/2 - 50)
+			    .attr('y', $(window).height()/3 - 50)
 		}); 
  
 	}
