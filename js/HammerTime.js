@@ -5,17 +5,16 @@
 		$('#myElement').css({'height': $(window).height()/3});
 		// create a simple instance
 		// by default, it only adds horizontal recognizers
-		var mc = new Hammer(myElement);
+		var mc = new Hammer.Manager(myElement);
 		var mySvg = d3.select('#shapearea')
 
 		// listen to events...
-		mc.on("panleft panright panup pandown tap rotate press", function(ev) {
+		mc.on("panleft panright panup pandown tap rotate quadrupletap press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
-		    // Enables Rotate
-		    mc.get('rotate').set({enable:true});
-		    // Allows for Up and Down Swipes
-		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('rotate').set({threshold: 10});
+		    mc.add( new Hammer.Tap() );
+		    mc.add( new Hammer.Rotate({ pointers: 2, threshold: 10 }) );
+		    mc.add( new Hammer.Press() );
+		    mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
 		    mc.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
 		});
 
@@ -37,10 +36,11 @@
 		var addHammerListener = function(that) {
 			var objMC = new Hammer(that)
 			// Enables Rotate
-		    objMC.get('rotate').set({enable:true});
-		    // Allows for Up and Down Swipes
-		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    objMC.get('rotate').set({threshold: 10});
+		    objMC.add( new Hammer.Tap() );
+		    objMC.add( new Hammer.Rotate({ pointers: 2, threshold: 10 }) );
+		    objMC.add( new Hammer.Press() );
+		    objMC.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
+		    objMC.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
 
 		    //Tap Stop
 		    objMC.on("tap", function(ev){
