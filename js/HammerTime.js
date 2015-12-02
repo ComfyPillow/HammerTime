@@ -112,7 +112,7 @@
 			mySvg.selectAll('rect')
 				.transition()
 				.duration(2000)
-				.style('fill', function(d) {return colorScale(d%10)})
+				.attr('fill', function(d) {return colorScale(d%10)})
 				.attr('x', function() {return Math.random() * $(window).width() - 50})
 				.attr('y', function() {return Math.random() * ($(window).height()/2)})
 		}); 
