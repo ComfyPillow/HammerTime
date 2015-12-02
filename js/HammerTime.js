@@ -99,8 +99,8 @@
 			mySvg.selectAll('rect')
 				.transition()
 				.duration(2000)
-				.attr('x', {return Math.random() * $(window).width()})
-				.attr('y', {return Math.random() * ($(window).height()/2)})
+				.attr('x', function() {return Math.random() * $(window).width()})
+				.attr('y', function() {return Math.random() * ($(window).height()/2)})
 		}); 
 
 		//Fills and changes to a rectangle
