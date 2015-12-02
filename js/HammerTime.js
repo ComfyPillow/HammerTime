@@ -108,7 +108,7 @@
 		//Rotate fills and changes to a rectangle
 		mc.on("rotate", function(ev){
 			var colorScale = d3.scale.category10();
-			var numbers = d3.range(1, mySvg.selectAll('rect').length)
+			var numbers = d3.range(1, 10);
 
 			mySvg.selectAll('rect')
 				.data(numbers)
