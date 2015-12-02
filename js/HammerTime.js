@@ -97,11 +97,10 @@
 		//Rotate fills and changes to a rectangle
 		mc.on("rotate press", function(ev){
 			mySvg.selectAll('rect')
-				.forEach()
 				.transition()
 				.duration(2000)
-				.attr('x', Math.random() * $(window).width())
-				.attr('y', Math.random() * $(window).height())
+				.attr('x', {return Math.random() * $(window).width()})
+				.attr('y', {return Math.random() * ($(window).height()/2)})
 		}); 
 
 		//Fills and changes to a rectangle
