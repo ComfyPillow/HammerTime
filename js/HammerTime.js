@@ -17,6 +17,7 @@
 		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+		    mc.get('pinch').set({threshold: 10});
 		    mc.get('rotate').set({threshold: 10});
 		});
 
@@ -94,6 +95,15 @@
 
 		// ** For Selecting ALL shapes **
 
+		//Rotate fills and changes to a rectangle
+		mc.on("rotate press", function(ev){
+			mySvg.selectAll('rect')
+				.transition()
+				.duration(2000)
+				.attr('x', Math.random() * $(window).width())
+				.attr('y', Math.random() * $(window).height())
+		}); 
+
 		//Fills and changes to a rectangle
 		mc.on("pinch", function(ev){
 			mySvg.selectAll('rect')
@@ -103,15 +113,6 @@
 			    .attr('ry', 0)
 			    .attr('fill', '#B23AEE')
 		})
-
-		//Rotate fills and changes to a rectangle
-		mc.on("rotate press", function(ev){
-			mySvg.selectAll('rect')
-				.transition()
-				.duration(2000)
-				.attr('x', Math.random() * $(window).width())
-				.attr('y', Math.random() * $(window).height())
-		}); 
 
 		//Slides Left
 		mc.on("panleft", function(ev) {
