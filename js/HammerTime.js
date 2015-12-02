@@ -108,13 +108,13 @@
 		//Rotate fills and changes to a rectangle
 		mc.on("rotate", function(ev){
 			var colorScale = d3.scale.category10();
-			var numbers = d3.range(1, 10);
+			var numbers = d3.range(1, mySvg.selectAll().size());
 
 			mySvg.selectAll('rect')
 				.data(numbers)
 				.transition()
 				.duration(2000)
-				.attr('fill', function(d) {return colorScale(d%10)})
+				.attr('fill', function(d) {return colorScale((Math.random() * d + 1)%10)})
 				.attr('x', function() {return Math.random() * $(window).width() - 50})
 				.attr('y', function() {return Math.random() * ($(window).height()/2)})
 		}); 
