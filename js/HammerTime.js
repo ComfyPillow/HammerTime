@@ -17,7 +17,7 @@
 		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('pinch').set({threshold: 5 });
+		    mc.get('pinch').set({threshold: 10 });
 		    mc.get('rotate').set({threshold: 10});
 		});
 
@@ -95,17 +95,8 @@
 
 		// ** For Selecting ALL shapes **
 
-		//Rotate fills and changes to a rectangle
-		mc.on("rotate", function(ev){
-			mySvg.selectAll('rect')
-				.transition()
-				.duration(2000)
-				.attr('x', function() {return Math.random() * $(window).width()})
-				.attr('y', function() {return Math.random() * ($(window).height()/2)})
-		}); 
-
 		//Fills and changes to a rectangle
-		mc.on("pinch", function(ev){
+		mc.on("pinchout press", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
     			.duration(2000)
@@ -113,6 +104,16 @@
 			    .attr('ry', 0)
 			    .attr('fill', '#B23AEE')
 		})
+
+		//Rotate fills and changes to a rectangle
+		mc.on("rotate", function(ev){
+			var colorScale = d3.scale.category10()
+			mySvg.selectAll('rect')
+				.transition()
+				.duration(2000)
+				.attr('x', function() {return Math.random() * $(window).width() - 50})
+				.attr('y', function() {return Math.random() * ($(window).height()/2)})
+		}); 
 
 		//Slides Left
 		mc.on("panleft", function(ev) {
