@@ -9,7 +9,7 @@
 		var mySvg = d3.select('#shapearea')
 
 		// listen to events...
-		mc.on("panleft panright panup pandown tap rotate press", function(ev) {
+		mc.on("panleft panright panup pandown tap rotate pinch press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
 		    // Enables Rotate
 		    mc.get('rotate').set({enable:true});
@@ -18,7 +18,6 @@
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 		    mc.get('rotate').set({threshold: 10});
-		    mc.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
 		});
 
 		//Creates initial Circle 
@@ -38,12 +37,8 @@
 
 		var addHammerListener = function(that) {
 			var objMC = new Hammer(that)
-			// Enables Rotate
-		    objMC.get('rotate').set({enable:true});
-		    objMC.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    objMC.get('rotate').set({threshold: 10});
 
 		    //Tap Stop
 		    objMC.on("tap", function(ev){
@@ -51,17 +46,6 @@
 		    		.transition()
 		    		.duration(0);
 		    });
-
-
-			//Rotate fills and changes to a rectangle
-			objMC.on("rotate press", function(ev){
-				d3.select(that)
-					.transition()
-	    			.duration(2000)
-	    			.attr('rx', 0)
-				    .attr('ry', 0)
-				    .attr('fill', '#B23AEE')
-			}); 
 
 			//Slides Left
 			objMC.on("panleft", function(ev) {
