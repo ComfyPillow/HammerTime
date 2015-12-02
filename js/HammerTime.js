@@ -8,14 +8,15 @@
 		var mc = new Hammer.Manager(myElement);
 		var mySvg = d3.select('#shapearea')
 
+		mc.add( new Hammer.Tap() );
+	    mc.add( new Hammer.Rotate({ pointers: 2, threshold: 10 }) );
+	    mc.add( new Hammer.Press() );
+	    mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
+	    mc.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
+
 		// listen to events...
 		mc.on("panleft panright panup pandown tap rotate quadrupletap press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
-		    mc.add( new Hammer.Tap() );
-		    mc.add( new Hammer.Rotate({ pointers: 2, threshold: 10 }) );
-		    mc.add( new Hammer.Press() );
-		    mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 }) );
-		    mc.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
 		});
 
 		//Creates initial Circle 
@@ -34,7 +35,7 @@
 		});
 
 		var addHammerListener = function(that) {
-			var objMC = new Hammer(that)
+			var objMC = new Hammer.Manager(that)
 			// Enables Rotate
 		    objMC.add( new Hammer.Tap() );
 		    objMC.add( new Hammer.Rotate({ pointers: 2, threshold: 10 }) );
