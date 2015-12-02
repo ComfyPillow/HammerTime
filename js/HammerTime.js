@@ -17,7 +17,8 @@
 		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('rotate').set({threshold: 5});
+		    mc.get('pinch').set({threshold: 5 });
+		    mc.get('rotate').set({threshold: 10});
 		});
 
 		//Creates initial Circle 
