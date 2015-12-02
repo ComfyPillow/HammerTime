@@ -17,7 +17,6 @@
 		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('pinch').set({threshold: 10});
 		    mc.get('rotate').set({threshold: 10});
 		});
 
@@ -98,6 +97,7 @@
 		//Rotate fills and changes to a rectangle
 		mc.on("rotate press", function(ev){
 			mySvg.selectAll('rect')
+				.forEach()
 				.transition()
 				.duration(2000)
 				.attr('x', Math.random() * $(window).width())
