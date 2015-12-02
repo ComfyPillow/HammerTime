@@ -13,6 +13,8 @@
 		    myElement.textContent = ev.type +" gesture detected.";
 		    // Enables Rotate
 		    mc.get('rotate').set({enable:true});
+		    // Enables Pinch
+		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 		    mc.get('rotate').set({threshold: 10});
@@ -38,6 +40,7 @@
 			var objMC = new Hammer(that)
 			// Enables Rotate
 		    objMC.get('rotate').set({enable:true});
+		    objMC.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 		    objMC.get('rotate').set({threshold: 10});
@@ -107,14 +110,23 @@
 
 		// ** For Selecting ALL shapes **
 
-		//Rotate fills and changes to a rectangle
-		mc.on("rotate press", function(ev){
+		//Fills and changes to a rectangle
+		mc.on("pinch", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
     			.duration(2000)
     			.attr('rx', 0)
 			    .attr('ry', 0)
 			    .attr('fill', '#B23AEE')
+		})
+
+		//Rotate fills and changes to a rectangle
+		mc.on("rotate press", function(ev){
+			mySvg.selectAll('rect')
+				.transition()
+				.duration(2000)
+				.attr('x', Math.random() * $(window).width())
+				.attr('y', Math.random() * $(window).height())
 		}); 
 
 		//Slides Left
@@ -161,13 +173,6 @@
 			    .attr('y', $(window).height()/3 - 50)
 		}); 
 
-		mc.on("quadrupletap", function(ev){
-			mySvg.selectAll('rect')
-				.transition()
-				.duration(2000)
-				.attr('x', Math.random() * $(window).width())
-				.attr('y', Math.random() * $(window).height())
-		})
  
 	}
 }());
