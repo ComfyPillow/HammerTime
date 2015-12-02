@@ -114,7 +114,7 @@
 				.data(numbers)
 				.transition()
 				.duration(2000)
-				.attr('fill', function(d) {return colorScale((Math.random() * d)%10)})
+				.attr('fill', function(d) {return colorScale(d%10)})
 				.attr('x', function() {return Math.random() * $(window).width() - 50})
 				.attr('y', function() {return Math.random() * ($(window).height()/2)})
 		}); 
