@@ -17,7 +17,7 @@
 		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('rotate').set({threshold: 10});
+		    mc.get('rotate').set({threshold: 5});
 		});
 
 		//Creates initial Circle 
@@ -95,7 +95,7 @@
 		// ** For Selecting ALL shapes **
 
 		//Rotate fills and changes to a rectangle
-		mc.on("rotate press", function(ev){
+		mc.on("rotate", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
 				.duration(2000)
