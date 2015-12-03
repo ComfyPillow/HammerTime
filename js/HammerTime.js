@@ -21,7 +21,7 @@
 		mc.on("tap", function(ev){
 			mySvg.append('circle')
 			    .attr('r', 50)
-			    .attr('cx', $(window).width()/2 - 50)
+			    .attr('cx', $(window).width()/2)
 			    .attr('cy', $(window).height()/3 - 50)
 			    .attr('fill', '#add8e6')
 			    .each(function(){
@@ -96,7 +96,7 @@
 				.transition()
 				.duration(2000)
 				.attr('fill', function(d) {return colorScale(d%10)})
-				.attr('cx', function() {return Math.random() * $(window).width() - 50})
+				.attr('cx', function() {return Math.random() * $(window).width() - 25})
 				.attr('cy', function() {return Math.random() * ($(window).height()/2)})
 		}); 
 
