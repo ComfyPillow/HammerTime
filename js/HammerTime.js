@@ -18,7 +18,6 @@
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 		    mc.get('pinch').set({threshold: 10 });
-		    mc.get('rotate').set({threshold: 10});
 		});
 
 		//Creates initial Circle 
@@ -96,7 +95,7 @@
 		// ** For Selecting ALL shapes **
 
 		//Fills and changes to a rectangle
-		mc.on("pinchout press", function(ev){
+		mc.on("pinchin press", function(ev){
 			mySvg.selectAll('rect')
 				.transition()
     			.duration(2000)
@@ -106,9 +105,9 @@
 		})
 
 		//Rotate fills and changes to a rectangle
-		mc.on("rotate", function(ev){
+		mc.on("pinchout", function(ev){
 			var colorScale = d3.scale.category10();
-			var numbers = d3.range(1, mySvg.selectAll('rect').size());
+			var numbers = d3.range(1, mySvg.selectAll('rect').size() + 1);
 
 			mySvg.selectAll('rect')
 				.data(numbers)
