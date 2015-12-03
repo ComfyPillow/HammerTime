@@ -19,13 +19,10 @@
 
 		//Creates initial Circle 
 		mc.on("tap", function(ev){
-			mySvg.append('rect')
-			    .attr('rx', 100)
-			    .attr('ry', 100)
-			    .attr('x', $(window).width()/2 - 50)
-			    .attr('y', $(window).height()/3 - 50)
-			    .attr('width', 100)
-			    .attr('height', 100)
+			mySvg.append('circle')
+			    .attr('r', 50)
+			    .attr('cx', $(window).width()/2 - 50)
+			    .attr('cy', $(window).height()/3 - 50)
 			    .attr('fill', '#add8e6')
 			    .each(function(){
 			    	addHammerListener(this);
@@ -49,7 +46,7 @@
 			    d3.select(that)
 	    			.transition()
 	    			.duration(2000)
-	  				.attr('x', 50);
+	  				.attr('cx', 50);
 			});
 
 			//Slides Right
@@ -57,7 +54,7 @@
 			    d3.select(that)
 	    			.transition()
 	    			.duration(2000)
-	  				.attr('x', $(window).width() - 150);
+	  				.attr('cx', $(window).width() - 150);
 			});
 
 			//Slides Up
@@ -65,7 +62,7 @@
 			    d3.select(that)
 	    			.transition()
 	    			.duration(2000)
-	  				.attr('y', $(window).height()/30);
+	  				.attr('cy', $(window).height()/30);
 			});
 
 			//Slides Left
@@ -73,7 +70,7 @@
 			    d3.select(that)
 	    			.transition()
 	    			.duration(2000)
-	  				.attr('y', $(window).height()/2);
+	  				.attr('cy', $(window).height()/2);
 			});
 
 			//Slides back to center
@@ -81,72 +78,68 @@
 				d3.select(that)
 					.transition()
 	    			.duration(2000)
-	    			.attr('rx', 100)
-				    .attr('ry', 100)
 				    .attr('fill', '#add8e6')
-	    			.attr('x', $(window).width()/2 - 50)
-				    .attr('y', $(window).height()/3 - 50)
+	    			.attr('cx', $(window).width()/2 - 50)
+				    .attr('cy', $(window).height()/3 - 50)
 			});
 		}
 
-		// ** For Selecting ALL shapes **
+		// ** For Selecting ALL circles **
 
-		//Explodes the shapes into different colors and locations
+		//Explodes the circles into different colors and locations
 		mc.on("pinch", function(ev) {
 			var colorScale = d3.scale.category10();
-			var numbers = d3.range(1, mySvg.selectAll('rect').size() + 1);
+			var numbers = d3.range(1, mySvg.selectAll('circle').size() + 1);
 
-			mySvg.selectAll('rect')
+			mySvg.selectAll('circle')
 				.data(numbers)
 				.transition()
 				.duration(2000)
 				.attr('fill', function(d) {return colorScale(d%10)})
-				.attr('x', function() {return Math.random() * $(window).width() - 50})
-				.attr('y', function() {return Math.random() * ($(window).height()/2)})
+				.attr('cx', function() {return Math.random() * $(window).width() - 50})
+				.attr('cy', function() {return Math.random() * ($(window).height()/2)})
 		}); 
 
 		//Slides Left
 		mc.on("panleft", function(ev) {
-		    mySvg.selectAll('rect')
+		    mySvg.selectAll('circle')
     			.transition()
     			.duration(2000)
-  				.attr('x', 50);
+  				.attr('cx', 50);
 		});
 
 		//Slides Right
 		mc.on("panright", function(ev) {
-		    mySvg.selectAll('rect')
+		    mySvg.selectAll('circle')
     			.transition()
     			.duration(2000)
-  				.attr('x', $(window).width() - 150);
+  				.attr('cx', $(window).width() - 150);
 		});
 
 		//Slides Up
 		mc.on("panup", function(ev) {
-		    mySvg.selectAll('rect')
+		    mySvg.selectAll('circle')
     			.transition()
     			.duration(2000)
-  				.attr('y', $(window).height()/30);
+  				.attr('cy', $(window).height()/30);
 		});
 
 		//Slides Left
 		mc.on("pandown", function(ev) {
-		    mySvg.selectAll('rect')
+		    mySvg.selectAll('circle')
     			.transition()
     			.duration(2000)
-  				.attr('y', $(window).height()/2);
+  				.attr('cy', $(window).height()/2);
 		});
 
 		//Slides back to center
 		mc.on("press", function(ev){
-			mySvg.selectAll('rect')
+			mySvg.selectAll('circle')
 				.transition()
     			.duration(2000)
-    			.attr('rx', 100)
-			    .attr('ry', 100)
 			    .attr('fill', '#add8e6')
-    			.attr('x', $(window).width()/2 - 50)
-			    .attr('y', $(window).height()/3 - 50)
+    			.attr('cx', $(window).width()/2 - 50)
+			    .attr('cy', $(window).height()/3 - 50)
 		}); 
 
  
