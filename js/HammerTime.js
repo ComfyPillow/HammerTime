@@ -8,7 +8,7 @@
 		var mc = new Hammer(myElement);
 		var mySvg = d3.select('#shapearea');
 		// Enables Pinch
-		mc.get('pinch').set({enable:true, threshold: 10, direction: Hammer.DIRECTION_ALL});
+		mc.get('pinch').set({enable:true, threshold: 10});
 
 		// listen to events...
 		mc.on("panleft panright panup pandown tap pinch press", function(ev) {
@@ -91,7 +91,8 @@
 
 		// ** For Selecting ALL shapes **
 
-		mc.on("pinchout", function(ev) {
+		//Explodes the shapes into different colors and locations
+		mc.on("pinch", function(ev) {
 			var colorScale = d3.scale.category10();
 			var numbers = d3.range(1, mySvg.selectAll('rect').size() + 1);
 
