@@ -6,19 +6,15 @@
 		// create a simple instance
 		// by default, it only adds horizontal recognizers
 		var mc = new Hammer(myElement);
-		var mySvg = d3.select('#shapearea')
+		var mySvg = d3.select('#shapearea');
+		// Enables Pinch
+		mc.get('pinch').set({enable:true});
 
 		// listen to events...
-		mc.on("panleft panright panup pandown tap rotate press", function(ev) {
+		mc.on("panleft panright panup pandown tap pinch press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
-		    // Enables Rotate
-		    mc.get('rotate').set({enable:true});
-		    // Enables Pinch
-		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('rotate').set({threshold: 10});
-		    mc.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
 		});
 
 		//Creates initial Circle 
@@ -38,12 +34,8 @@
 
 		var addHammerListener = function(that) {
 			var objMC = new Hammer(that)
-			// Enables Rotate
-		    objMC.get('rotate').set({enable:true});
-		    objMC.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
 		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    objMC.get('rotate').set({threshold: 10});
 
 		    //Tap Stop
 		    objMC.on("tap", function(ev){
@@ -51,17 +43,6 @@
 		    		.transition()
 		    		.duration(0);
 		    });
-
-
-			//Rotate fills and changes to a rectangle
-			objMC.on("rotate press", function(ev){
-				d3.select(that)
-					.transition()
-	    			.duration(2000)
-	    			.attr('rx', 0)
-				    .attr('ry', 0)
-				    .attr('fill', '#B23AEE')
-			}); 
 
 			//Slides Left
 			objMC.on("panleft", function(ev) {
@@ -110,23 +91,18 @@
 
 		// ** For Selecting ALL shapes **
 
-		//Fills and changes to a rectangle
-		mc.on("pinch", function(ev){
-			mySvg.selectAll('rect')
-				.transition()
-    			.duration(2000)
-    			.attr('rx', 0)
-			    .attr('ry', 0)
-			    .attr('fill', '#B23AEE')
-		})
+		//Explodes the shapes into different colors and locations
+		mc.on("pinch", function(ev) {
+			var colorScale = d3.scale.category10();
+			var numbers = d3.range(1, mySvg.selectAll('rect').size() + 1);
 
-		//Rotate fills and changes to a rectangle
-		mc.on("rotate press", function(ev){
 			mySvg.selectAll('rect')
+				.data(numbers)
 				.transition()
 				.duration(2000)
-				.attr('x', Math.random() * $(window).width())
-				.attr('y', Math.random() * $(window).height())
+				.attr('fill', function(d) {return colorScale(d%10)})
+				.attr('x', function() {return Math.random() * $(window).width() - 50})
+				.attr('y', function() {return Math.random() * ($(window).height()/2)})
 		}); 
 
 		//Slides Left
