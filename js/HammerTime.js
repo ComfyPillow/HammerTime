@@ -11,8 +11,6 @@
 		// listen to events...
 		mc.on("panleft panright panup pandown tap rotate pinch press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
-		    // Enables Rotate
-		    mc.get('rotate').set({enable:true});
 		    // Enables Pinch
 		    mc.get('pinch').set({enable:true});
 		    // Allows for Up and Down Swipes
