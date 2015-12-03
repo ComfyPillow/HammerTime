@@ -9,13 +9,12 @@
 		var mySvg = d3.select('#shapearea')
 
 		// listen to events...
-		mc.on("panleft panright panup pandown tap rotate pinch press", function(ev) {
+		mc.on("panleft panright panup pandown tap pinch press", function(ev) {
 		    myElement.textContent = ev.type +" gesture detected.";
 		    // Enables Pinch
-		    mc.get('pinch').set({enable:true});
+		    mc.get('pinch').set({enable:true, threshold: 5});
 		    // Allows for Up and Down Swipes
 		    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-		    mc.get('pinch').set({threshold: 10 });
 		});
 
 		//Creates initial Circle 
@@ -92,18 +91,8 @@
 
 		// ** For Selecting ALL shapes **
 
-		//Fills and changes to a rectangle
-		mc.on("pinchin press", function(ev){
-			mySvg.selectAll('rect')
-				.transition()
-    			.duration(2000)
-    			.attr('rx', 0)
-			    .attr('ry', 0)
-			    .attr('fill', '#B23AEE')
-		})
-
 		//Rotate fills and changes to a rectangle
-		mc.on("pinchout", function(ev){
+		mc.on("pinch", function(ev){
 			var colorScale = d3.scale.category10();
 			var numbers = d3.range(1, mySvg.selectAll('rect').size() + 1);
 
