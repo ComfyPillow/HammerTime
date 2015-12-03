@@ -79,7 +79,7 @@
 					.transition()
 	    			.duration(2000)
 				    .attr('fill', '#add8e6')
-	    			.attr('cx', $(window).width()/2 - 50)
+	    			.attr('cx', $(window).width()/2)
 				    .attr('cy', $(window).height()/3 - 50)
 			});
 		}
@@ -138,7 +138,7 @@
 				.transition()
     			.duration(2000)
 			    .attr('fill', '#add8e6')
-    			.attr('cx', $(window).width()/2 - 50)
+    			.attr('cx', $(window).width()/2)
 			    .attr('cy', $(window).height()/3 - 50)
 		}); 
 
