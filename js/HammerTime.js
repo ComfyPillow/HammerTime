@@ -8,7 +8,7 @@
 		var mc = new Hammer(myElement);
 		var mySvg = d3.select('#shapearea');
 		// Enables Pinch
-		mc.get('pinch').set({enable:true, threshold: 10});
+		mc.get('pinch').set({enable:true, threshold: 3});
 
 		// listen to events...
 		mc.on("panleft panright panup pandown tap pinch press", function(ev) {
