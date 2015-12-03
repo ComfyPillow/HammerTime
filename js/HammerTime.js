@@ -54,7 +54,7 @@
 			    d3.select(that)
 	    			.transition()
 	    			.duration(2000)
-	  				.attr('cx', $(window).width() - 150);
+	  				.attr('cx', $(window).width() - 50);
 			});
 
 			//Slides Up
@@ -62,7 +62,7 @@
 			    d3.select(that)
 	    			.transition()
 	    			.duration(2000)
-	  				.attr('cy', $(window).height()/30);
+	  				.attr('cy', $(window).height()/30 + 50);
 			});
 
 			//Slides Left
@@ -96,7 +96,7 @@
 				.transition()
 				.duration(2000)
 				.attr('fill', function(d) {return colorScale(d%10)})
-				.attr('cx', function() {return Math.random() * $(window).width() - 25})
+				.attr('cx', function() {return Math.random() * $(window).width() - 50})
 				.attr('cy', function() {return Math.random() * ($(window).height()/2)})
 		}); 
 
@@ -113,7 +113,7 @@
 		    mySvg.selectAll('circle')
     			.transition()
     			.duration(2000)
-  				.attr('cx', $(window).width() - 150);
+  				.attr('cx', $(window).width() - 50);
 		});
 
 		//Slides Up
@@ -121,7 +121,7 @@
 		    mySvg.selectAll('circle')
     			.transition()
     			.duration(2000)
-  				.attr('cy', $(window).height()/30);
+  				.attr('cy', $(window).height()/30 + 50);
 		});
 
 		//Slides Left
