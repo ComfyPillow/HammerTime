@@ -36,6 +36,7 @@
 			var objMC = new Hammer(that)
 		    // Allows for Up and Down Swipes
 		    objMC.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+		    objMC.get('pinch').set({enable:true, threshold: 5});
 
 		    //Tap Stop
 		    objMC.on("tap", function(ev){
@@ -92,9 +93,9 @@
 		// ** For Selecting ALL shapes **
 
 		//Rotate fills and changes to a rectangle
-		mc.on("pinch", function(ev){
+		mc.on('pinch', function(ev){
 			var colorScale = d3.scale.category10();
-			var numbers = d3.range(1, mySvg.selectAll('rect').size());
+			var numbers = d3.range(1, mySvg.selectAll('rect').size() + 1);
 
 			mySvg.selectAll('rect')
 				.data(numbers)
